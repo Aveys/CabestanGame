@@ -1,12 +1,15 @@
-package
-{
-	import flash.display.Sprite;
+package {	
+	import org.flixel.*;
+	import org.cabestan.*;
 	
-	public class Cabestan extends Sprite
+	[SWF(width="640", height="480", backgroundColor="#ABCC7D")]
+	[Frame(factoryClass="Preloader")]
+	
+	public class Cabestan extends FlxGame
 	{
-		public function Cabestan()
+		public function Cabestan():void
 		{
-			
+			super(640, 480, PlayState, 1);
 		}
 	}
 }
