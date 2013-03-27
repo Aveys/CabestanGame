@@ -26,7 +26,7 @@ package org.cabestan
 			
 			FlxControl.player1.setCursorControl(true, true, true, true);
 			
-			FlxControl.player1.setMovementSpeed(400, 0, 100, 200, 400, 0);
+			FlxControl.player1.setMovementSpeed(400, 400, 100, 200, 400, 400);
 			
 			FlxControl.player1.setGravity(0,0);
 			
