@@ -17,7 +17,8 @@ package org.cabestan
 			loadGraphic(Barque,true,false,16,16,true);
 			width=16;
 			height=16;
-			addAnimation("rame",[0,1,2,3,4],7,true);
+			addAnimation("rameD",[0,1,2,3,4],7,false);
+			addAnimation("rameG",[4,3,2,1,0],7,false);
 			if (FlxG.getPlugin(FlxControl) == null)
 			{
 				FlxG.addPlugin(new FlxControl);
@@ -36,12 +37,10 @@ package org.cabestan
 		override public function update():void
 		{
 			super.update();
-			
-			if (x < 0)
-			{
-				x = 0;
-			}
-			play("rame");
+			if(velocity.x<0)
+				play("rameD");
+			else
+				play("rameG");
 		}
 	}
 }

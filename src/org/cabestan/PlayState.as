@@ -32,7 +32,8 @@ package org.cabestan
 			_moneys = new FlxGroup();
 			add(_moneys);
 			
-			
+			_obstcales = new FlxGroup();
+			add(_obstcales);
 			
 			//Déclaration des objets
 			_boat = new Boat(50,FlxG.height/2);
@@ -84,10 +85,10 @@ package org.cabestan
 					spawnMoney();
 				}
 				else
-				{*/
+				{
 					resetSpawnTimer();
 					spawnMoney();
-				/*}
+				/
 				
 				if(_cpTimerEtoile == 10)
 				{
@@ -119,7 +120,7 @@ package org.cabestan
 		}
 		private function spawnMoney():void
 		{
-			var x:Number = FlxG.width;
+			var x:Number = FlxG.width + Math.random() * 200;
 			var y:Number = Math.random() * (FlxG.height - 100) + 50;
 			_moneys.add(new Money(x,y));
 		}
