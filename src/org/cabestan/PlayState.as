@@ -4,11 +4,18 @@ package org.cabestan
 	
 	public class PlayState extends FlxState
 	{
-		public function PlayState()
-		{
-			FlxG.
+		//attributs de sprite
+		private var _boat:Boat;
+		
+		
+		override public function create():void{
+		 	FlxG.score=0;
 			
-			super();
+			//Déclaration des objets
+			_boat = new Boat(50,FlxG.height/2);
+			
+			//ajout à l'écran
+			add(_boat);	
 		}
 	}
 }
