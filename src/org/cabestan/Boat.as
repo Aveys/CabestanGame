@@ -22,13 +22,13 @@ package org.cabestan
 			{
 				FlxG.addPlugin(new FlxControl);
 			}
-			FlxControl.create(this, FlxControlHandler.MOVEMENT_ACCELERATES, FlxControlHandler.STOPPING_DECELERATES, 1, true, false);
+			FlxControl.create(this, FlxControlHandler.MOVEMENT_INSTANT, FlxControlHandler.STOPPING_DECELERATES, 1, true, false);
 			
 			FlxControl.player1.setCursorControl(true, true, true, true);
 			
-			FlxControl.player1.setMovementSpeed(400, 400, 100, 200, 400, 400);
-			
-			FlxControl.player1.setGravity(0,0);
+			FlxControl.player1.setMovementSpeed(200,200,200,200);
+
+			FlxControl.player1.setBounds(16,16,600,440);
 			
 			facing = FlxObject.RIGHT;
 		}
