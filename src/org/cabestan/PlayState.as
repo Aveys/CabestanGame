@@ -1,9 +1,12 @@
 package org.cabestan
 {
 	import org.flixel.*;
+
 	
 	public class PlayState extends FlxState
 	{
+		//attributs de sprite
+		private var _boat:Boat;
 		private var _moneys:FlxGroup;
 		private var _spawnTimer: Number;
 		private var _spawnInterval: Number = 2.5;
@@ -14,6 +17,13 @@ package org.cabestan
 
 			_moneys = new FlxGroup();
 			add(_moneys);
+			
+			//Déclaration des objets
+			_boat = new Boat(50,FlxG.height/2);
+			
+			//ajout à l'écran
+			add(_boat);	
+			
 			resetSpawnTimer();
 			super.create();
 		}
@@ -21,7 +31,7 @@ package org.cabestan
 		override public function update():void
 		{
 			_spawnTimer -= FlxG.elapsed;
-			
+
 			if(_spawnTimer < 0.1)
 			{
 				spawnMoney();
