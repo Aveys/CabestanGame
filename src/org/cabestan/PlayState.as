@@ -5,6 +5,15 @@ package org.cabestan
 	
 	public class PlayState extends FlxState
 	{
+		[Embed(source="../assets/coin.mp3")] private var Coin:Class;
+		public var coinFX:FlxSound;
+		[Embed(source="../assets/explode.mp3")] private var Explode:Class;
+		public var explodeFX:FlxSound;
+		[Embed(source="../assets/powerup.mp3")] private var Powerup:Class;
+		public var powerupFX:FlxSound;
+		[Embed(source="../assets/select.mp3")] private var Select:Class;
+		public var selectFX:FlxSound;
+		
 		//attributs de sprite
 		private var _boat:Boat;
 		private var _moneys:FlxGroup;
@@ -35,6 +44,16 @@ package org.cabestan
 			
 			_obstcales = new FlxGroup();
 			add(_obstcales);
+			
+			//declaration du son
+			coinFX = new FlxSound();
+			coinFX.loadEmbedded(Coin);
+			explodeFX = new FlxSound();
+			explodeFX.loadEmbedded(Explode);
+			powerupFX = new FlxSound();
+			powerupFX.loadEmbedded(Powerup);
+			selectFX = new FlxSound();
+			selectFX.loadEmbedded(Select);
 			
 			//Déclaration des objets
 			_boat = new Boat(50,FlxG.height/2);
@@ -91,9 +110,11 @@ package org.cabestan
 				}
 				else
 				{
+			{
 					resetSpawnTimer();
 					spawnMoney();
 				}
+			}
 			}
 				super.update();
 			
@@ -102,12 +123,15 @@ package org.cabestan
 		public function hitBoatMoneys(boat:Boat,money:Money):void{
 			money.kill();
 			FlxG.score+=10;
+			coinFX.play(true);
 		}
 		
 		public function hitBoatEtoile(boat:Boat,_etoile:Etoile):void{
 			if(_etoile.type == 1)
 			{
-				resetSpawnTimerJaune();}
+				resetSpawnTimerJaune();
+				powerupFX.play(true);
+			}
 			else
 			{resetSpwanTimerNoir();
 			}
