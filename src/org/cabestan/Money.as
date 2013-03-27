@@ -15,7 +15,7 @@ package org.cabestan
 		
 		override public function update():void
 		{
-			if(this.x<-10){
+			if(this.x<-50){
 				this.kill();
 				this.destroy();}
 			super.update();
