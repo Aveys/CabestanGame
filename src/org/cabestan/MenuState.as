@@ -1,8 +1,9 @@
 package org.cabestan
 {
-	import org.flixel.*;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
+	
+	import org.flixel.*;
 	
 	public class MenuState extends FlxState
 	{
@@ -10,20 +11,24 @@ package org.cabestan
 		[Embed(source="../assets/logo.png")] private var Logo:Class;
 		override public function create():void
 		{
-			var new_timer:Timer = new Timer(500, 2);
+			FlxG.mouse.show();
+			FlxG.bgColor=0xFF33CCFF;
+			var new_timer:Timer = new Timer(50, 20);
+			new_timer.start();
 			// function timer_complete will be called once the timer expires, 2 secs in this case
 			new_timer.addEventListener(TimerEvent.TIMER_COMPLETE, timer_complete);
+			new_timer.addEventListener(TimerEvent.TIMER ,timer_tick);
+			logo = new FlxSprite(20,20);
 			logo.loadGraphic(Logo);
 			add(logo);
 			
 			var title:FlxText;
-			title = new FlxText(0, 16, FlxG.width, "Game Title");
-			title.setFormat (null, 16, 0xFFFFFFFF, "center");
+			title = new FlxText(0, 16, FlxG.width, "Titre du jeu");
+			title.setFormat (null, 32, 0xFFFFFFFF, "center");
 			add(title);
 			
-			var instructions:FlxText;
-			instructions = new FlxText(0, FlxG.height - 32, FlxG.width, "Press Space To Play");
-			instructions.setFormat (null, 8, 0xFFFFFFFF, "center");
+			var instructions:FlxButton;
+			instructions = new FlxButton(FlxG.width/2-40,FlxG.height/3+54, "Jouer",stGame);
 			add(instructions);
 			
 		} // end function create
@@ -33,14 +38,15 @@ package org.cabestan
 		{
 			super.update(); // calls update on everything you added to the game loop
 			
-			if (FlxG.keys.justPressed("SPACE"))
-			{
-				FlxG.switchState(new PlayState());
-			}
-			
 		} // end function update
+		public function stGame():void{
+			FlxG.switchState(new PlayState());
+		}
 		public function timer_complete(event:TimerEvent):void {
-			
+			logo.alpha=0;
+		}
+		public function timer_tick(event:TimerEvent):void{
+			logo.alpha-=0.1;
 		}
 		
 		public function MenuState()
