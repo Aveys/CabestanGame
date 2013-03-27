@@ -8,9 +8,9 @@ package org.cabestan
 		public var lvlBateau:Number=0;
 		private var start:FlxPoint;
 		
-		[Embed(source="../../../../assets/barque.png")] private var Barque:Class;
+		[Embed(source="../assets/barque.png")] private var Barque:Class;
 		
-		public function Boat(X:Number=0, Y:Number=0, )
+		public function Boat(X:Number=0, Y:Number=0)
 		{
 			super(X, Y);
 			start= new FlxPoint(X,Y);
