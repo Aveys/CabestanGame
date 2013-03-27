@@ -2,7 +2,7 @@ package {
 	import org.flixel.*;
 	import org.cabestan.*;
 	
-	[SWF(width="640", height="480", backgroundColor="#ABCC7D")]
+	[SWF(width="640", height="480", backgroundColor="#33CCFF")]
 	[Frame(factoryClass="Preloader")]
 	
 	public class Cabestan extends FlxGame
