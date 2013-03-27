@@ -1,12 +1,21 @@
 package org.cabestan
 {
 	import org.flixel.*;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 	
 	public class MenuState extends FlxState
 	{
-		
+		public var logo:FlxSprite;
+		[Embed(source="../assets/logo.png")] private var Logo:Class;
 		override public function create():void
 		{
+			var new_timer:Timer = new Timer(500, 2);
+			// function timer_complete will be called once the timer expires, 2 secs in this case
+			new_timer.addEventListener(TimerEvent.TIMER_COMPLETE, timer_complete);
+			logo.loadGraphic(Logo);
+			add(logo);
+			
 			var title:FlxText;
 			title = new FlxText(0, 16, FlxG.width, "Game Title");
 			title.setFormat (null, 16, 0xFFFFFFFF, "center");
@@ -30,7 +39,9 @@ package org.cabestan
 			}
 			
 		} // end function update
-		
+		public function timer_complete(event:TimerEvent):void {
+			
+		}
 		
 		public function MenuState()
 		{
