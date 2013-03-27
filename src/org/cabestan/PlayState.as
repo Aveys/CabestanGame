@@ -13,17 +13,18 @@ package org.cabestan
 		private var _obstcales:FlxGroup;
 		
 		private var _spawnEtoileTimer:Number;
-		private var _spawnEtoileInterval: Number = 5;
+		private var _spawnEtoileInterval: Number = 30;
+		
+		private var _spawnObstacleTimer:Number;
+		private var _spawnObstacleInterval: Number=1.5;
 		
 		private var _spawnTimer: Number;
 		
-		private var _spawnInterval: Number = 1.5;
+		private var _spawnInterval: Number = 0.5;
 		private var _spawnIntervalJaune: Number = 0.1;
 		private var _spawnIntervalNoir: Number = 3;
 		
 		private var _typeEtoile:Number;
-		private var timer:FlxTimer;
-		private var _cpTimerEtoile:Number = 0;
 		
 		override public function create():void
 		{
@@ -47,9 +48,9 @@ package org.cabestan
 			//ajout à l'écran
 			add(_boat);
 			add(score)
-			timer = new FlxTimer();
 			resetSpawnEtoileTimer();
 			resetSpawnTimer();
+			resetSpawnObstacleTimer();
 			super.create();
 			
 		}
@@ -62,6 +63,7 @@ package org.cabestan
 			
 			_spawnTimer -= FlxG.elapsed;
 			_spawnEtoileTimer -= FlxG.elapsed;
+			_spawnObstacleTimer -= FlxG.elapsed;
 			
 			if(_spawnEtoileTimer < 0.1)
 			{
@@ -69,34 +71,30 @@ package org.cabestan
 				resetSpawnEtoileTimer();
 			}
 
+			if(_spawnObstacleTimer < 0.1)
+			{
+				spawnObstacle();
+				resetSpawnObstacleTimer();
+			}
 			
 			if(_spawnTimer < 0.1)
-			{/*
+			{
 				if(_typeEtoile == 1)
 				{
 					resetSpawnTimerJaune();
-					_cpTimerEtoile += 1;
 					spawnMoney();
 				}
 				else if(_typeEtoile == 0)
 				{
 					resetSpwanTimerNoir();
-					_cpTimerEtoile += 1;
 					spawnMoney();
 				}
 				else
 				{
 					resetSpawnTimer();
 					spawnMoney();
-				/
-				
-				if(_cpTimerEtoile == 10)
-				{
-					_cpTimerEtoile = 0;
-					resetSpawnTimer();
-					_typeEtoile == 2;
 				}
-*/			}
+			}
 				super.update();
 			
 		}
@@ -113,7 +111,6 @@ package org.cabestan
 			else
 			{resetSpwanTimerNoir();
 			}
-			timer.start(10,1);
 			_typeEtoile = _etoile.type;
 			_etoile.kill();
 			_etoile.destroy();
@@ -132,6 +129,16 @@ package org.cabestan
 			_etoile = new Etoile(x,y,Math.round(Math.random()));
 			add(_etoile);
 		}
+		
+		private function spawnObstacle():void
+		{
+			var x:Number = FlxG.width + Math.random() * 200;
+			var y:Number = Math.random() * (FlxG.height - 100) + 50;
+			_obstcales.add(new Obstacle(x,y));
+		}
+		
+		
+		private function resetSpawnObstacleTimer():void {_spawnObstacleTimer = _spawnObstacleInterval;}
 		
 		private function resetSpawnEtoileTimer():void {_spawnEtoileTimer = _spawnEtoileInterval}
 		
