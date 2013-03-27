@@ -8,10 +8,12 @@ package org.cabestan
 		//attributs de sprite
 		private var _boat:Boat;
 		private var _moneys:FlxGroup;
-		
+		private var _etoile:Etoile;
 		private var score:FlxText;
+		
+		private var _timerEtoile:FlxTimer;
 		private var _spawnTimer: Number;
-		private var _spawnInterval: Number = 2.5;
+		private var _spawnInterval: Number = 1.5;
 		
 		override public function create():void
 		{
@@ -32,9 +34,13 @@ package org.cabestan
 			//ajout à l'écran
 			add(_boat);
 			add(score)
+
+			_timerEtoile = new FlxTimer();
+			_timerEtoile.start(2,1,spawnEtoile);
 			
 			resetSpawnTimer();
 			super.create();
+			
 		}
 		
 		override public function update():void
@@ -61,14 +67,20 @@ package org.cabestan
 			_moneys.add(new Money(x,y));
 		}
 		
+		private function spawnEtoile():void
+		{
+			_etoile = new Etoile(100,100,1);
+			add(_etoile);
+		}
+		
 		private function resetSpawnTimer():void
 		{
 			_spawnTimer = _spawnInterval;			
-			_spawnInterval *= 0.95;
-			if(_spawnInterval < 0.1)
-			{
-				_spawnInterval = 0.1;
-			}
+			//_spawnInterval *= 0.95;
+			//if(_spawnInterval < 0.1)
+			//{
+			//	_spawnInterval = 0.1;
+			//}
 		}
 	}
 }
