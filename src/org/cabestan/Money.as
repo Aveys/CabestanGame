@@ -4,7 +4,7 @@ package org.cabestan
 	
 	public class Money extends FlxSprite
 	{
-		[Embed(source="../../../../assets/Money.png")] private var ImgMoney:Class;
+		[Embed(source="../assets/Money.png")] private var ImgMoney:Class;
 		
 		public function Money(X:Number=0, Y:Number=0)
 		{
