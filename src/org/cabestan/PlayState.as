@@ -10,10 +10,20 @@ package org.cabestan
 		private var _moneys:FlxGroup;
 		private var _etoile:Etoile;
 		private var score:FlxText;
+		private var _obstcales:FlxGroup;
 		
-		private var _timerEtoile:FlxTimer;
+		private var _spawnEtoileTimer:Number;
+		private var _spawnEtoileInterval: Number = 5;
+		
 		private var _spawnTimer: Number;
+		
 		private var _spawnInterval: Number = 1.5;
+		private var _spawnIntervalJaune: Number = 0.1;
+		private var _spawnIntervalNoir: Number = 3;
+		
+		private var _typeEtoile:Number;
+		private var timer:FlxTimer;
+		private var _cpTimerEtoile:Number = 0;
 		
 		override public function create():void
 		{
@@ -21,6 +31,8 @@ package org.cabestan
 
 			_moneys = new FlxGroup();
 			add(_moneys);
+			
+			
 			
 			//Déclaration des objets
 			_boat = new Boat(50,FlxG.height/2);
@@ -34,10 +46,8 @@ package org.cabestan
 			//ajout à l'écran
 			add(_boat);
 			add(score)
-
-			_timerEtoile = new FlxTimer();
-			_timerEtoile.start(2,1,spawnEtoile);
-			
+			timer = new FlxTimer();
+			resetSpawnEtoileTimer();
 			resetSpawnTimer();
 			super.create();
 			
@@ -47,18 +57,65 @@ package org.cabestan
 		{
 			score.text=FlxG.score+" $"
 			FlxG.overlap(_boat,_moneys,hitBoatMoneys);
+			FlxG.overlap(_boat,_etoile,hitBoatEtoile);
+			
 			_spawnTimer -= FlxG.elapsed;
-
-			if(_spawnTimer < 0.1)
+			_spawnEtoileTimer -= FlxG.elapsed;
+			
+			if(_spawnEtoileTimer < 0.1)
 			{
-				spawnMoney();
-				resetSpawnTimer();
+				spawnEtoile();
+				resetSpawnEtoileTimer();
 			}
+
+			
+			if(_spawnTimer < 0.1)
+			{/*
+				if(_typeEtoile == 1)
+				{
+					resetSpawnTimerJaune();
+					_cpTimerEtoile += 1;
+					spawnMoney();
+				}
+				else if(_typeEtoile == 0)
+				{
+					resetSpwanTimerNoir();
+					_cpTimerEtoile += 1;
+					spawnMoney();
+				}
+				else
+				{*/
+					resetSpawnTimer();
+					spawnMoney();
+				/*}
+				
+				if(_cpTimerEtoile == 10)
+				{
+					_cpTimerEtoile = 0;
+					resetSpawnTimer();
+					_typeEtoile == 2;
+				}
+*/			}
 				super.update();
+			
 		}
+			
 		public function hitBoatMoneys(boat:Boat,money:Money):void{
 			money.kill();
 			FlxG.score+=10;
+		}
+		
+		public function hitBoatEtoile(boat:Boat,_etoile:Etoile):void{
+			if(_etoile.type == 1)
+			{
+				resetSpawnTimerJaune();}
+			else
+			{resetSpwanTimerNoir();
+			}
+			timer.start(10,1);
+			_typeEtoile = _etoile.type;
+			_etoile.kill();
+			_etoile.destroy();
 		}
 		private function spawnMoney():void
 		{
@@ -69,18 +126,18 @@ package org.cabestan
 		
 		private function spawnEtoile():void
 		{
-			_etoile = new Etoile(100,100,1);
+			var x:Number = FlxG.width;
+			var y:Number = Math.random() * (FlxG.height - 100) + 50;
+			_etoile = new Etoile(x,y,Math.round(Math.random()));
 			add(_etoile);
 		}
 		
-		private function resetSpawnTimer():void
-		{
-			_spawnTimer = _spawnInterval;			
-			//_spawnInterval *= 0.95;
-			//if(_spawnInterval < 0.1)
-			//{
-			//	_spawnInterval = 0.1;
-			//}
-		}
+		private function resetSpawnEtoileTimer():void {_spawnEtoileTimer = _spawnEtoileInterval}
+		
+		private function resetSpawnTimer():void {_spawnTimer = _spawnInterval;}
+		
+		private function resetSpawnTimerJaune():void {_spawnTimer = _spawnIntervalJaune;}
+			
+		private function resetSpwanTimerNoir():void {_spawnTimer = _spawnIntervalNoir;}
 	}
 }

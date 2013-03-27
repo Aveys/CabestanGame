@@ -8,16 +8,28 @@ package org.cabestan
 		[Embed(source="../assets/etoileNoire.png")] private var imgEtoileNoire:Class;
 		private var img:Class;
 		
-		private var Type:Number;
-		public function Etoile(X:Number, Y:Number,Type:Number)
+		public var type:Number;
+		public function Etoile(X:Number, Y:Number,type:Number)
 		{
 			//TODO: implement function
-			if(Type == 1)
+			if(type == 1)
 				img = imgEtoileJaune;	
 			else
 				img = imgEtoileNoire;
 				
 			super(X, Y,img);
+			this.type = type;
+			velocity.x = - 300;
+		}
+		
+		override public function update():void
+		{
+			if(this.x<-50){
+				this.kill();
+				this.destroy();}
+			
+			velocity.y = Math.cos(x / 50) * 50;
+			super.update();
 		}
 	}
 }
