@@ -6,7 +6,7 @@ package org.cabestan
 	{
 		[Embed(source="../assets/Money.png")] private var ImgMoney:Class;
 		
-		public function Money(X:Number=0, Y:Number=0)
+		public function Money(X:Number, Y:Number):void
 		{
 			//TODO: implement function
 			super(X, Y,ImgMoney);
@@ -15,7 +15,7 @@ package org.cabestan
 		
 		override public function update():void
 		{
-			
+			super.update();
 		}
 	}
 }
