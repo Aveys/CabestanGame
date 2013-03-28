@@ -14,9 +14,9 @@ package org.cabestan
 		{
 			super(X, Y);
 			start= new FlxPoint(X,Y);
-			loadGraphic(Barque,true,false,16,16,true);
-			width=16;
-			height=16;
+			loadGraphic(Barque,true,false,40,40,true);
+			width=40;
+			height=40;
 			addAnimation("rameD",[0,1,2,3,4],7,false);
 			addAnimation("rameG",[4,3,2,1,0],7,false);
 			if (FlxG.getPlugin(FlxControl) == null)
