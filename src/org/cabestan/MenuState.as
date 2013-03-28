@@ -40,7 +40,7 @@ package org.cabestan
 			
 		} // end function update
 		public function stGame():void{
-			FlxG.switchState(new PlayState());
+			FlxG.switchState(new BoutiqueState());
 		}
 		public function timer_complete(event:TimerEvent):void {
 			logo.alpha=0;
