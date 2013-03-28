@@ -36,7 +36,7 @@ package org.cabestan
 		private var _spawnInterval: Number = 0.5;
 		private var _spawnIntervalJaune: Number = 0.1;
 		private var _spawnIntervalNoir: Number = 2;
-		private var _spawnEtoileInterval: Number = 3;
+		private var _spawnEtoileInterval: Number = 20;
 		private var _spawnObstacleInterval: Number=1.5;
 		
 		private var _spawnObstacleTimer:Number;
@@ -122,6 +122,7 @@ package org.cabestan
 				if(_time  < 0.1)
 				{
 					IsEtoile = false;
+					trace(IsEtoile);
 				}
 				
 				
@@ -136,6 +137,7 @@ package org.cabestan
 					spawnObstacle();
 					resetSpawnObstacleTimer();
 				}
+				trace(_time);
 				
 				if(_spawnTimer < 0.1)
 				{
@@ -205,13 +207,16 @@ package org.cabestan
 			if(_etoile.type == 1)
 			{
 				resetSpawnTimerJaune();
+				_time = 3;
 				powerupFX.play(true);
 			}
-			else
+			else if(_etoile.type == 0)
+			{
 			resetSpwanTimerNoir();
-			
+			_time = 0.15;
+			}
 			IsEtoile = true;
-			_time = 3;
+			
 			_typeEtoile = _etoile.type;
 			_etoile.kill();
 			_etoile.destroy();
