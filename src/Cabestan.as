@@ -1,4 +1,5 @@
 package {	
+	import org.cabestan.BoatState;
 	import org.cabestan.BoutiqueState;
 	import org.cabestan.MenuState;
 	import org.flixel.*;
@@ -10,8 +11,8 @@ package {
 	{
 		public function Cabestan():void
 		{
-			super(640, 480, MenuState, 1);
-			//super(640,480,BoutiqueState,1);
+			//super(640, 480, MenuState, 1);
+			super(640,480,BoatState,1);
 		}
 	}
 }

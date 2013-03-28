@@ -1,6 +1,7 @@
 package org.cabestan
 {
 	import org.flixel.*;
+	import org.flixel.plugin.photonstorm.FlxButtonPlus;
 	
 	public class BoutiqueState extends FlxState
 	{
@@ -9,8 +10,11 @@ package org.cabestan
 		private var _MenuText: FlxText;
 		private var score:FlxText;
 		private var _scoreText: FlxText;
-		private var btnMenu:FlxButton;
-		private var btnPlay:FlxButton;
+		private var btnMenu:FlxButtonPlus;
+		private var btnPlay:FlxButtonPlus;
+		private var btnBateauA:FlxButtonPlus;
+		private var btnBateauB:FlxButtonPlus;
+		private var btnBateauC:FlxButtonPlus;
 		
 		override public function create():void
 		{
@@ -24,24 +28,48 @@ package org.cabestan
 			_MenuText.setFormat(null, 16, 0xFF000000, "center");
 			add(_MenuText);
 			
-			_scoreText = new FlxText(-200,100, FlxG.width, "Votre argent :\n");					
+			/*_scoreText = new FlxText(-200,100, FlxG.width, "Votre argent :\n");					
 			_scoreText.setFormat(null, 16, 0xFF000000, "center");
 			add(_scoreText);
 			
 			score = new FlxText(0, 0, 100);
+			score.text = FlxU.formatMoney(FlxG.score)+" $";
 			score.x = 100;
 			score.y = 120;
 			score.color = 0xff000000;
 			score.shadow = 0xffFFFFFF;
 			score.size = 20;
+			*/
 			
 			
-			
-			btnPlay = new FlxButton(FlxG.width/2-40,FlxG.height/3+54, "Jouer",startGame);
+			btnPlay = new FlxButtonPlus(30,FlxG.height-75,startGame,null, "Jouer",150,40);
+			btnPlay.borderColor = 1;
+			btnPlay.updateInactiveButtonColors([0xff3333FF,0xff3333FF]);
+			btnPlay.updateActiveButtonColors([0xff33CCFF,0xff33CCFF]);
 			add(btnPlay);
 			
-			btnMenu = new FlxButton(FlxG.width/2-40,FlxG.height/3+54, "Menu Principal",startMenu);
-			add(btnPlay);
+			btnMenu = new FlxButtonPlus(FlxG.width-180,FlxG.height-75,startMenu,null, "Menu Principal",150,40);
+			btnMenu.updateInactiveButtonColors([0xff3333FF,0xff3333FF]);
+			btnMenu.updateActiveButtonColors([0xff33CCFF,0xff33CCFF]);
+			add(btnMenu);
+			
+			btnBateauA = new FlxButtonPlus(10,10,startBoat,null, "Bateau A",150,40);
+			btnBateauA.ID =1;
+			btnBateauA.updateInactiveButtonColors([0xff3333FF,0xff3333FF]);
+			btnBateauA.updateActiveButtonColors([0xff33CCFF,0xff33CCFF]);
+			add(btnBateauA);
+			
+			btnBateauB = new FlxButtonPlus(10,60,startBoat,null, "Bateau B",150,40);
+			btnBateauB.ID =2;
+			btnBateauB.updateInactiveButtonColors([0xff3333FF,0xff3333FF]);
+			btnBateauB.updateActiveButtonColors([0xff33CCFF,0xff33CCFF]);
+			add(btnBateauB);
+			
+			btnBateauC = new FlxButtonPlus(10,110,startBoat,null, "Bateau C",150,40);
+			btnBateauC.ID =3;
+			btnBateauC.updateInactiveButtonColors([0xff3333FF,0xff3333FF]);
+			btnBateauC.updateActiveButtonColors([0xff33CCFF,0xff33CCFF]);
+			add(btnBateauC);
 			
 			super.create();
 		}
@@ -56,6 +84,17 @@ package org.cabestan
 			FlxG.switchState(new PlayState());
 		}
 		
+		public function startBoat():void
+		{
+			if(btnBateauA.ID == 1)
+				FlxG.switchState(new BoatState(1));
+			if(btnBateauA.ID == 2)
+				FlxG.switchState(new BoatState(2));
+			if(btnBateauA.ID == 3)
+				FlxG.switchState(new BoatState(3));
+			
+			
+		}
 		
 
 		public function startMenu():void
