@@ -9,16 +9,28 @@ package org.cabestan
 		private var start:FlxPoint;
 		
 		[Embed(source="../assets/barque.png")] private var Barque:Class;
+		[Embed(source="../assets/bateaub.png")] private var bateauB:Class;
+		[Embed(source="../assets/bateauc.png")] private var bateauC:Class;
+		private var Bateau:Class;
 		
-		public function Boat(X:Number=0, Y:Number=0)
+		public function Boat(X:Number=0, Y:Number=0,typeBateau:Number=0)
 		{
+			
+			
 			super(X, Y);
 			start= new FlxPoint(X,Y);
-			loadGraphic(Barque,true,false,40,40,true);
+			if(typeBateau == 1)
+				Bateau = Barque;
+			else if(typeBateau == 2)
+				Bateau = bateauB;
+			else if(typeBateau == 3)
+				Bateau = bateauC;
+			
+			loadGraphic(Bateau,true,false,40,40,true);
 			width=40;
 			height=40;
-			addAnimation("rameD",[0,1,2,3,4],7,false);
-			addAnimation("rameG",[4,3,2,1,0],7,false);
+			addAnimation("rame",[0,1,2,3,4],7,false);
+
 			if (FlxG.getPlugin(FlxControl) == null)
 			{
 				FlxG.addPlugin(new FlxControl);
@@ -37,10 +49,8 @@ package org.cabestan
 		override public function update():void
 		{
 			super.update();
-			if(velocity.x<0)
-				play("rameD");
-			else
-				play("rameG");
+				play("rame");
+
 		}
 	}
 }

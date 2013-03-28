@@ -12,6 +12,7 @@ package org.cabestan
 		override public function create():void
 		{
 			FlxG.score = 3000;
+			
 			FlxG.mouse.show();
 			FlxG.bgColor=0xFF33CCFF;
 			var new_timer:Timer = new Timer(50, 20);

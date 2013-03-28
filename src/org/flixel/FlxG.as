@@ -24,6 +24,12 @@ package org.flixel
 	 */
 	public class FlxG
 	{
+		/** 
+		 * sert à la determination du bateau
+		 * */
+		static public var TypeBateau:Number = 0;
+		
+		
 		/**
 		 * If you build and maintain your own version of flixel,
 		 * you can give it your own name here.

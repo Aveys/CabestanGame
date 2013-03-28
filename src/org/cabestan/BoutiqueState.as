@@ -6,10 +6,16 @@ package org.cabestan
 	public class BoutiqueState extends FlxState
 	{
 		[Embed(source="../assets/logo.png")] private var Logo:Class;
+		[Embed(source="../assets/barque.png")] private var BoatA:Class;
+		[Embed(source="../assets/bateaub.png")] private var BoatB:Class;
+		[Embed(source="../assets/bateauc.png")] private var BoatC:Class;
+		
 		private var _logo:FlxSprite;
 		private var _MenuText: FlxText;
 		private var score:FlxText;
 		private var _scoreText: FlxText;
+		
+		
 		private var btnMenu:FlxButtonPlus;
 		private var btnPlay:FlxButtonPlus;
 		private var btnBateauA:FlxButtonPlus;
@@ -18,6 +24,7 @@ package org.cabestan
 		
 		override public function create():void
 		{
+			FlxG.TypeBateau = 0;
 			FlxG.mouse.show();
 			FlxG.bgColor = 0xFFFFFFFF;
 			_logo = new FlxSprite(90,10);
@@ -27,6 +34,9 @@ package org.cabestan
 			_MenuText = new FlxText(0,400, FlxG.width, "Boutique de Cabestan");					
 			_MenuText.setFormat(null, 16, 0xFF000000, "center");
 			add(_MenuText);
+			
+			initButton();
+			
 			
 			/*_scoreText = new FlxText(-200,100, FlxG.width, "Votre argent :\n");					
 			_scoreText.setFormat(null, 16, 0xFF000000, "center");
@@ -42,6 +52,23 @@ package org.cabestan
 			*/
 			
 			
+
+			super.create();
+		}
+		
+		override public function update():void
+		{
+			
+			if(FlxG.TypeBateau == 0)
+				btnPlay.active = false;
+			else
+				btnPlay.active = true;
+			
+			super.update();
+		}
+		
+		public function initButton():void
+		{
 			btnPlay = new FlxButtonPlus(30,FlxG.height-75,startGame,null, "Jouer",150,40);
 			btnPlay.borderColor = 1;
 			btnPlay.updateInactiveButtonColors([0xff3333FF,0xff3333FF]);
@@ -71,28 +98,18 @@ package org.cabestan
 			btnBateauC.updateActiveButtonColors([0xff33CCFF,0xff33CCFF]);
 			add(btnBateauC);
 			
-			super.create();
-		}
-		
-		override public function update():void
-		{
-			super.update();
 		}
 		
 		public function startGame():void
 		{
+			
 			FlxG.switchState(new PlayState());
 		}
 		
 		public function startBoat():void
 		{
-			if(btnBateauA.ID == 1)
-				FlxG.switchState(new BoatState(1));
-			if(btnBateauA.ID == 2)
-				FlxG.switchState(new BoatState(2));
-			if(btnBateauA.ID == 3)
-				FlxG.switchState(new BoatState(3));
 			
+			FlxG.switchState(new BoatState());
 			
 		}
 		

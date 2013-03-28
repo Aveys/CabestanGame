@@ -68,7 +68,7 @@ package org.cabestan
 			selectFX.loadEmbedded(Select);
 			
 			//Déclaration des objets
-			_boat = new Boat(50,FlxG.height/2);
+			_boat = new Boat(50,FlxG.height/2,FlxG.TypeBateau);
 			score = new FlxText(0, 0, 100);
 			score.color = 0xffffffff;
 			score.shadow = 0xff000000;
