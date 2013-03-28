@@ -48,7 +48,7 @@ package org.cabestan
 		override public function create():void
 		{
 
-			
+			FlxG.mouse.hide();
 			FlxG.bgColor = 0xFF33CCFF;
 			
 			_moneys = new FlxGroup();
@@ -94,6 +94,10 @@ package org.cabestan
 			
 			if(FlxG.keys.ENTER && IsDead == true)
 			{				
+				FlxG.switchState(new BoutiqueState());
+			}
+			else if (FlxG.keys.Q)
+			{
 				FlxG.switchState(new BoutiqueState());
 			}
 						
