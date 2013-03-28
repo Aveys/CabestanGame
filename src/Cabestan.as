@@ -2,6 +2,7 @@ package {
 	import org.cabestan.BoatState;
 	import org.cabestan.BoutiqueState;
 	import org.cabestan.MenuState;
+	import org.cabestan.PlayState;
 	import org.flixel.*;
 	
 	[SWF(width="640", height="480", backgroundColor="#33CCFF")]

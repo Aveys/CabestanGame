@@ -29,6 +29,14 @@ package org.flixel
 		 * */
 		static public var TypeBateau:Number = 0;
 		
+		/**
+		 * 
+		 * sert à savoir si le bateau est acheté ou non 
+		 * */
+		static public var IsBoughtA:Boolean = false;
+		static public var IsBoughtB:Boolean = false;
+		static public var IsBoughtC:Boolean = false;
+		
 		
 		/**
 		 * If you build and maintain your own version of flixel,

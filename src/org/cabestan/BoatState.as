@@ -7,12 +7,13 @@ package org.cabestan
 	import org.flixel.FlxState;
 	import org.flixel.FlxText;
 	import org.flixel.FlxU;
+	import org.flixel.plugin.photonstorm.FlxButtonPlus;
 	
 	public class BoatState extends FlxState
 	{
 		[Embed(source="../assets/image_Barque1.jpg")] private var BoatA:Class;
-		[Embed(source="../assets/image_Barque1.jpg")] private var BoatB:Class;
-		[Embed(source="../assets/image_Barque1.jpg")] private var BoatC:Class;
+		[Embed(source="../assets/image_bateauB.jpg")] private var BoatB:Class;
+		[Embed(source="../assets/image_bateauC.jpg")] private var BoatC:Class;
 		
 		private var _logo:FlxSprite;
 		private var _desciption:FlxText;
@@ -26,7 +27,11 @@ package org.cabestan
 		private var _prixA:Number;
 		private var _prixB:Number;
 		private var _prixC:Number;
+		private var _prix1:Number;
 		
+		private var btnMenu:FlxButtonPlus;
+		private var btnBuy:FlxButtonPlus;
+
 		
 		override public function create():void
 		{
@@ -38,27 +43,46 @@ package org.cabestan
 			{
 				_logo.loadGraphic(BoatA);
 				_description1 = _descriptionA;
+				_prix1 = _prixA;
 
 			}
 			else if(FlxG.TypeBateau == 2)
 			{
 				_logo.loadGraphic(BoatB);
 				_description1 = _descriptionB;
-
+				_prix1 = _prixB;
 			}
 			else if(FlxG.TypeBateau == 3)
 			{
 				_logo.loadGraphic(BoatC);
 				_description1 = _descriptionC;
-
+				_prix1 = _prixC;
+			}else
+			{
+				FlxG.switchState(new BoutiqueState());
+				FlxG.TypeBateau =0;
 			}
-
 			
 			_desciption = new FlxText(0,240,340,_description1);
+			_desciption.color = 0xff000000;
 			
-			_Prix = new FlxText(FlxG.width/2,240,340,"Prix : "+ FlxU.formatMoney(_prixA) +" €");
+			_Prix = new FlxText(FlxG.width/2,280,340,"Prix : "+ FlxU.formatMoney(_prix1) +" €");
+			_Prix.color = 0xff000000;
 			_Prix.alignment = "center";
 			_Prix.size = 20;
+			
+			
+			btnMenu = new FlxButtonPlus(FlxG.width/2+95,320,startMenu,null, "Boutique",150,40);
+			btnMenu.borderColor = 1;
+			btnMenu.updateInactiveButtonColors([0xff3333FF,0xff3333FF]);
+			btnMenu.updateActiveButtonColors([0xff33CCFF,0xff33CCFF]);
+			add(btnMenu);
+			
+			btnBuy = new FlxButtonPlus(FlxG.width/2+95,380,BuyBoat,null, "Acheter",150,40);
+			btnBuy.borderColor = 1;
+			btnBuy.updateInactiveButtonColors([0xff3333FF,0xff3333FF]);
+			btnBuy.updateActiveButtonColors([0xff33CCFF,0xff33CCFF]);
+			add(btnBuy);
 			
 			add(_logo);	
 			add(_Prix);
@@ -66,6 +90,33 @@ package org.cabestan
 			
 			super.create();
 		}
+	public function startMenu():void
+	{
+		FlxG.TypeBateau = 0;
+		FlxG.switchState(new BoutiqueState());
+	}
+	
+	public function BuyBoat():void
+	{
+		if(FlxG.TypeBateau ==1 && FlxG.score >= 3000 )
+		{	FlxG.score -= 3000;
+			FlxG.IsBoughtA = true;
+			FlxG.TypeBateau = 0;
+			FlxG.switchState(new BoutiqueState());
+		}else if(FlxG.TypeBateau ==2 && FlxG.score >= 7500)
+		{	FlxG.score -= 7500;
+			FlxG.IsBoughtB = true;	
+			FlxG.TypeBateau = 0;
+			FlxG.switchState(new BoutiqueState());
+		}else if(FlxG.TypeBateau ==3 && FlxG.score >= 18000)
+		{	FlxG.score -= 18000;
+			FlxG.IsBoughtC = true;
+			FlxG.TypeBateau = 0;
+			FlxG.switchState(new BoutiqueState());
+		}
+		
+		
+	}
 		
 		
 	public function initText():void

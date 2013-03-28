@@ -12,6 +12,9 @@ package org.cabestan
 		override public function create():void
 		{
 			FlxG.score = 3000;
+			FlxG.IsBoughtA = false;
+			FlxG.IsBoughtB = false;
+			FlxG.IsBoughtC = false;
 			
 			FlxG.mouse.show();
 			FlxG.bgColor=0xFF33CCFF;
