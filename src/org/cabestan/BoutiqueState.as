@@ -128,13 +128,13 @@ package org.cabestan
 			ImageC = new FlxSprite();
 			ImageC.loadGraphic(BoatC);
 			
-			selectA = new FlxButtonPlus(FlxG.width/2 - 80,FlxG.height- 120,selectType,[1],"",40,40);
+			selectA = new FlxButtonPlus(FlxG.width/2 - 80,FlxG.height- 120,selectType,[1],"Bateau A",40,40);
 			selectA.loadGraphic(ImageA,ImageASelect);
 			add(selectA);
-			selectB = new FlxButtonPlus(FlxG.width/2-20,FlxG.height- 120,selectType,[2],"",40,40);
+			selectB = new FlxButtonPlus(FlxG.width/2-20,FlxG.height- 120,selectType,[2],"bateau B",40,40);
 			selectB.loadGraphic(ImageB,ImageBSelect);
 			add(selectB);
-			selectC = new FlxButtonPlus(FlxG.width/2 + 40,FlxG.height- 120,selectType,[3],"",40,40);
+			selectC = new FlxButtonPlus(FlxG.width/2 + 40,FlxG.height- 120,selectType,[3],"bateau C",40,40);
 			selectC.loadGraphic(ImageC,ImageCSelect);
 			add(selectC);
 			
