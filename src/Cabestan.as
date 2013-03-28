@@ -11,8 +11,8 @@ package {
 	{
 		public function Cabestan():void
 		{
-			//super(640, 480, MenuState, 1);
-			super(640,480,BoatState,1);
+			super(640, 480, MenuState, 1);
+			//super(640,480,BoatState,1);
 		}
 	}
 }

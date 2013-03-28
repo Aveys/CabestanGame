@@ -29,7 +29,7 @@ package org.cabestan
 			add(title);
 			
 			var instructions:FlxButton;
-			instructions = new FlxButton(FlxG.width/2-40,FlxG.height/3+54, "Jouer",stGame);
+			instructions = new FlxButton(FlxG.width/2-40,FlxG.height/3+54, "Accèder au jeu",stGame);
 			add(instructions);
 			
 		} // end function create
