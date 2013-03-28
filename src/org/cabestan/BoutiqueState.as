@@ -6,15 +6,24 @@ package org.cabestan
 	public class BoutiqueState extends FlxState
 	{
 		[Embed(source="../assets/logo.png")] private var Logo:Class;
-		[Embed(source="../assets/barque.png")] private var BoatA:Class;
-		[Embed(source="../assets/bateaub.png")] private var BoatB:Class;
-		[Embed(source="../assets/bateauc.png")] private var BoatC:Class;
+		[Embed(source="../assets/btnBarque.png")] private var BoatA:Class;
+		[Embed(source="../assets/btnBateaub.png")] private var BoatB:Class;
+		[Embed(source="../assets/btnBateauc.png")] private var BoatC:Class;
 		
 		private var _logo:FlxSprite;
 		private var _MenuText: FlxText;
 		private var score:FlxText;
 		private var _scoreText: FlxText;
+		private var choose:FlxText;
 		
+		private var ImageA:FlxSprite;
+		private var ImageB:FlxSprite;
+		private var ImageC:FlxSprite;
+		private var selection:FlxSprite;
+		
+		private var selectA:FlxButtonPlus;
+		private var selectB:FlxButtonPlus;
+		private var selectC:FlxButtonPlus;
 		
 		private var btnMenu:FlxButtonPlus;
 		private var btnPlay:FlxButtonPlus;
@@ -31,12 +40,12 @@ package org.cabestan
 			_logo.loadGraphic(Logo);
 			add(_logo);
 			
-			_MenuText = new FlxText(0,400, FlxG.width, "Boutique de Cabestan");					
+			_MenuText = new FlxText(0,420, FlxG.width, "Boutique de Cabestan");					
 			_MenuText.setFormat(null, 16, 0xFF000000, "center");
 			add(_MenuText);
 			
 			initButton();
-			
+			initBtnBoat();
 			
 			/*_scoreText = new FlxText(-200,100, FlxG.width, "Votre argent :\n");					
 			_scoreText.setFormat(null, 16, 0xFF000000, "center");
@@ -98,6 +107,37 @@ package org.cabestan
 			btnBateauC.updateActiveButtonColors([0xff33CCFF,0xff33CCFF]);
 			add(btnBateauC);
 			
+		}
+		
+		public function initBtnBoat():void
+		{
+			ImageA = new FlxSprite();
+			ImageA.loadGraphic(BoatA);
+			ImageB = new FlxSprite();
+			ImageB.loadGraphic(BoatB);
+			ImageC = new FlxSprite();
+			ImageC.loadGraphic(BoatC);
+			
+			selectA = new FlxButtonPlus(FlxG.width/2 - 80,FlxG.height- 120,selectType,null,"",40,40);
+			selectA.loadGraphic(ImageA,ImageA);
+			add(selectA);
+			selectB = new FlxButtonPlus(FlxG.width/2-20,FlxG.height- 120,selectType,null,"",40,40);
+			selectB.loadGraphic(ImageB,ImageB);
+			add(selectB);
+			selectC = new FlxButtonPlus(FlxG.width/2 + 40,FlxG.height- 120,selectType,null,"",40,40);
+			selectC.loadGraphic(ImageC,ImageC);
+			add(selectC);
+			
+			choose = new FlxText(FlxG.width/2-150,FlxG.height - 150,300,"Choisis ton bateau !");
+			choose.setFormat(null, 16, 0xFF000000, "center");
+			add(choose);
+		}
+		
+		public function selectType():void
+		{
+			selection = new FlxSprite(FlxG.width/2 - 80,FlxG.height- 120);
+			selection.makeGraphic(40,40,0xffFFFF00);
+			add(selection);
 		}
 		
 		public function startGame():void
