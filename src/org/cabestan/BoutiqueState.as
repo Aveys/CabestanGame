@@ -13,6 +13,8 @@ package org.cabestan
 		[Embed(source="../assets/btnBateaubSelect.png")] private var BoatBselect:Class;
 		[Embed(source="../assets/btnBateaucSelect.png")] private var BoatCselect:Class;
 		[Embed(source="../assets/boutikmusic.mp3")] private var Boutik:Class;
+		public var bg:FlxSprite;
+		[Embed(source="../assets/bg.png")] private var Bg:Class;
 		
 		private var boutifSFX:FlxSound;
 		private var _logo:FlxSprite;
@@ -45,6 +47,9 @@ package org.cabestan
 				boutifSFX = new FlxSound;
 				boutifSFX.loadEmbedded(Boutik)
 				boutifSFX.play();
+				bg = new FlxSprite();
+				bg.loadGraphic(Bg);
+				add(bg);
 				
 			FlxG.mouse.show();
 			FlxG.bgColor = 0xFFFFFFFF;

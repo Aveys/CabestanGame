@@ -9,8 +9,13 @@ package org.cabestan
 	{
 		public var logo:FlxSprite;
 		[Embed(source="../assets/logo.png")] private var Logo:Class;
+		public var bg:FlxSprite;
+		[Embed(source="../assets/bg.png")] private var Bg:Class;
 		override public function create():void
 		{
+			bg = new FlxSprite();
+			bg.loadGraphic(Bg);
+			add(bg);
 			FlxG.score = 3000;
 			FlxG.IsBoughtA = false;
 			FlxG.IsBoughtB = false;
@@ -26,11 +31,6 @@ package org.cabestan
 			logo = new FlxSprite(20,20);
 			logo.loadGraphic(Logo);
 			add(logo);
-			
-			var title:FlxText;
-			title = new FlxText(0, 16, FlxG.width, "Titre du jeu");
-			title.setFormat (null, 32, 0xFFFFFFFF, "center");
-			add(title);
 			
 			var instructions:FlxButton;
 			instructions = new FlxButton(FlxG.width/2-40,FlxG.height/3+54, "Accèder au jeu",stGame);
