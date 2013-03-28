@@ -10,6 +10,8 @@ package org.cabestan
 		[Embed(source="../assets/btnBarque.png")] private var BoatA:Class;
 		[Embed(source="../assets/btnBateaub.png")] private var BoatB:Class;
 		[Embed(source="../assets/btnBateauc.png")] private var BoatC:Class;
+		[Embed(source="../assets/boutikmusic.mp3")] private var Boutik:Class;
+		private var boutifSFX:FlxSound;
 		
 		private var _logo:FlxSprite;
 		private var _MenuText: FlxText;
@@ -34,6 +36,9 @@ package org.cabestan
 		
 		override public function create():void
 		{
+			boutifSFX = new FlxSound;
+			boutifSFX.loadEmbedded(Boutik)
+			boutifSFX.play();
 			FlxG.TypeBateau = 0;
 			FlxG.mouse.show();
 			FlxG.bgColor = 0xFFFFFFFF;
@@ -68,7 +73,8 @@ package org.cabestan
 		
 		override public function update():void
 		{
-			
+			if(FlxG.keys.T)
+				this.startGame();
 			if(FlxG.TypeBateau == 0)
 				btnPlay.active = false;
 			else
@@ -143,13 +149,13 @@ package org.cabestan
 		
 		public function startGame():void
 		{
-			
+			boutifSFX.destroy();
 			FlxG.switchState(new PlayState());
 		}
 		
 		public function startBoat():void
 		{
-			
+			boutifSFX.destroy();
 			FlxG.switchState(new BoatState());
 			
 		}
@@ -157,6 +163,7 @@ package org.cabestan
 
 		public function startMenu():void
 		{
+			boutifSFX.destroy();
 			FlxG.switchState(new MenuState());
 		}
 	}

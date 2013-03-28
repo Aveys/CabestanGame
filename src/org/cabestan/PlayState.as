@@ -16,6 +16,8 @@ package org.cabestan
 		[Embed(source="../assets/powerup.mp3")] private var Powerup:Class;
 		public var powerupFX:FlxSound;
 		[Embed(source="../assets/select.mp3")] private var Select:Class;
+		[Embed(source="../assets/playmusic.mp3")] private var PlayS:Class;
+		public var playSFX:FlxSound;
 		[Embed(source="../assets/logo.png")] private var Logo:Class;
 		public var selectFX:FlxSound;
 		
@@ -47,7 +49,9 @@ package org.cabestan
 		
 		override public function create():void
 		{
-
+			playSFX = new FlxSound();
+			playSFX.loadEmbedded(PlayS);
+			playSFX.play();
 			FlxG.mouse.hide();
 			FlxG.bgColor = 0xFF33CCFF;
 			
@@ -94,10 +98,12 @@ package org.cabestan
 			
 			if(FlxG.keys.ENTER && IsDead == true)
 			{				
+				playSFX.destroy();
 				FlxG.switchState(new BoutiqueState());
 			}
 			else if (FlxG.keys.Q)
 			{
+				playSFX.destroy();
 				FlxG.switchState(new BoutiqueState());
 			}
 						
