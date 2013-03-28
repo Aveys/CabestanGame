@@ -1,6 +1,4 @@
 package {	
-	import org.cabestan.BoatState;
-	import org.cabestan.BoutiqueState;
 	import org.cabestan.MenuState;
 	import org.cabestan.PlayState;
 	import org.flixel.*;
@@ -16,4 +14,5 @@ package {
 
 		}
 	}
+
 }

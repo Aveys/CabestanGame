@@ -12,7 +12,9 @@ package org.cabestan
 		[Embed(source="../assets/btnBarqueSelect.png")] private var BoatASelect:Class;
 		[Embed(source="../assets/btnBateaubSelect.png")] private var BoatBselect:Class;
 		[Embed(source="../assets/btnBateaucSelect.png")] private var BoatCselect:Class;
+		[Embed(source="../assets/boutikmusic.mp3")] private var Boutik:Class;
 		
+		private var boutifSFX:FlxSound;
 		private var _logo:FlxSprite;
 		private var _MenuText: FlxText;
 		private var score:FlxText;
@@ -40,6 +42,10 @@ package org.cabestan
 		
 		override public function create():void
 		{
+				boutifSFX = new FlxSound;
+				boutifSFX.loadEmbedded(Boutik)
+				boutifSFX.play();
+				
 			FlxG.mouse.show();
 			FlxG.bgColor = 0xFFFFFFFF;
 			_logo = new FlxSprite(90,10);
@@ -178,6 +184,5 @@ package org.cabestan
 			FlxG.switchState(new MenuState());
 		}
 	}
-
 
 }
