@@ -63,4 +63,5 @@ package org.cabestan
 			FlxG.switchState(new MenuState());
 		}
 	}
+
 }
