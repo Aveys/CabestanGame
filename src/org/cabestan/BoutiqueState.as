@@ -93,7 +93,7 @@ package org.cabestan
 				btnPlay.active = false;
 			else
 				btnPlay.active = true;
-			if(FlxG.keys.NUMPADPLUS)
+			if(FlxG.keys.P)
 				FlxG.score+=1000;
 			if(FlxG.keys.D){
 				FlxG.IsBoughtA=true;
