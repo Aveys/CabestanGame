@@ -10,10 +10,12 @@ package org.cabestan
 		[Embed(source="../assets/image_bateauB.jpg")] private var BoatB:Class;
 		[Embed(source="../assets/image_bateauC.jpg")] private var BoatC:Class;
 		[Embed(source="../assets/boutikmusic.mp3")] private var Boutik:Class;
+		[Embed(source="../assets/bg.png")] private var Bg:Class;
 		
 		private var _logo:FlxSprite;
 		private var _desciption:FlxText;
 		private var _Prix:FlxText;
+		private var _bg:FlxSprite;
 		
 		private var _descriptionA:String;
 		private var _descriptionB:String;
@@ -28,7 +30,7 @@ package org.cabestan
 		private var btnMenu:FlxButtonPlus;
 		private var btnBuy:FlxButtonPlus;
 		
-		private var boutifSFX:FlxSound;
+
 
 		
 		override public function create():void
@@ -47,6 +49,9 @@ package org.cabestan
 				FlxG.music=boutifSFX;
 				FlxG.music.play(true);
 			}
+			_bg = new FlxSprite(0,0);
+			_bg.loadGraphic(Bg);
+			add(_bg);
 			initText();
 			FlxG.mouse.show();
 			_logo = new FlxSprite(0,0);

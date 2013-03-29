@@ -76,7 +76,12 @@ package org.cabestan
 			
 			advert = new FlxText(FlxG.width - 150,FlxG.height - 150,100,"Vous devez achetez ce bateau pour l'utiliser !");
 			advert.setFormat(null, 16, 0xFF000000, "center");
+<<<<<<< HEAD
 			
+=======
+			add(advert);
+			advert.kill();
+>>>>>>> branch 'master' of https://github.com/Aveys/CabestanGame.git
 			
 			super.create();
 		}
@@ -165,26 +170,56 @@ package org.cabestan
 			
 			if(type == 1 && FlxG.IsBoughtA ==true)
 			{
+<<<<<<< HEAD
 				FlxG.TypeBateau =1;
 				selectA.loadGraphic(ImageASelect,ImageASelect);
 				selectB.loadGraphic(ImageB,ImageB);
 				selectC.loadGraphic(ImageC,ImageC);
 				
+=======
+			FlxG.TypeBateau =1;
+			selectA.loadGraphic(ImageASelect,ImageASelect);
+			selectB.loadGraphic(ImageB,ImageB);
+			selectC.loadGraphic(ImageC,ImageC);
+			advert.kill();
+			
+>>>>>>> branch 'master' of https://github.com/Aveys/CabestanGame.git
 			}else if(type == 2 && FlxG.IsBoughtB ==true)
 			{
+<<<<<<< HEAD
 				FlxG.TypeBateau =2;
 				selectA.loadGraphic(ImageA,ImageA);
 				selectB.loadGraphic(ImageBSelect,ImageBSelect);
 				selectC.loadGraphic(ImageC,ImageC);
+=======
+			FlxG.TypeBateau =2;
+			selectA.loadGraphic(ImageA,ImageA);
+			selectB.loadGraphic(ImageBSelect,ImageBSelect);
+			selectC.loadGraphic(ImageC,ImageC);
+			advert.kill();
+>>>>>>> branch 'master' of https://github.com/Aveys/CabestanGame.git
 			}else if(type == 3 && FlxG.IsBoughtC ==true)
 			{
+<<<<<<< HEAD
 				FlxG.TypeBateau =3;
 				selectA.loadGraphic(ImageA,ImageA);
 				selectB.loadGraphic(ImageB,ImageB);
 				selectC.loadGraphic(ImageCSelect,ImageCSelect);
+=======
+			FlxG.TypeBateau =3;
+			selectA.loadGraphic(ImageA,ImageA);
+			selectB.loadGraphic(ImageB,ImageB);
+			selectC.loadGraphic(ImageCSelect,ImageCSelect);
+			advert.kill();
+>>>>>>> branch 'master' of https://github.com/Aveys/CabestanGame.git
 			}else
+<<<<<<< HEAD
 				add(advert);
 			
+=======
+				advert.revive();
+
+>>>>>>> branch 'master' of https://github.com/Aveys/CabestanGame.git
 		}
 		
 		public function startGame():void
