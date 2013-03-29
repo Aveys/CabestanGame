@@ -35,6 +35,8 @@ package org.cabestan
 			var instructions:FlxButton;
 			instructions = new FlxButton(FlxG.width/2-40,FlxG.height/3+54, "Accèder au jeu",stGame);
 			add(instructions);
+			instructions = new FlxButton(FlxG.width/2-40,FlxG.height/3+150, "Cabestan.fr",lnk);
+			add(instructions);
 			
 		} // end function create
 		
@@ -46,6 +48,9 @@ package org.cabestan
 		} // end function update
 		public function stGame():void{
 			FlxG.switchState(new BoutiqueState());
+		}
+		public function lnk():void{
+			FlxU.openURL("http://cabestan.fr");
 		}
 		public function timer_complete(event:TimerEvent):void {
 			logo.alpha=0;
