@@ -76,37 +76,34 @@ package org.cabestan
 			
 			advert = new FlxText(FlxG.width - 150,FlxG.height - 150,100,"Vous devez achetez ce bateau pour l'utiliser !");
 			advert.setFormat(null, 16, 0xFF000000, "center");
-<<<<<<< HEAD
-			
-=======
 			add(advert);
 			advert.kill();
->>>>>>> branch 'master' of https://github.com/Aveys/CabestanGame.git
-			
-			super.create();
-		}
-		
-		override public function update():void
-		{
-			
-			if(FlxG.TypeBateau == 0)
-				btnPlay.active = false;
-			else
-				btnPlay.active = true;
-			if(FlxG.keys.P)
-				FlxG.score+=1000;
-			if(FlxG.keys.D){
+
+				
+				super.create();
+				}
+				
+				override public function update():void
+				{
+				
+				if(FlxG.TypeBateau == 0)
+					btnPlay.active = false;
+				else
+					btnPlay.active = true;
+				if(FlxG.keys.P)
+					FlxG.score+=1000;
+				if(FlxG.keys.D){
 				FlxG.IsBoughtA=true;
-				FlxG.IsBoughtB=true;
-				FlxG.IsBoughtC=true;
+			FlxG.IsBoughtB=true;
+			FlxG.IsBoughtC=true;
 			}
 			
 			
 			super.update();
-		}
-		
-		public function initButton():void
-		{
+			}
+			
+			public function initButton():void
+			{
 			
 			btnPlay = new FlxButtonPlus(30,FlxG.height-75,startGame,null, "Jouer",150,40);
 			btnPlay.borderColor = 1;
@@ -132,10 +129,10 @@ package org.cabestan
 			btnBateauC.updateActiveButtonColors([0xff33CCFF,0xff33CCFF]);
 			add(btnBateauC);
 			
-		}
-		
-		public function initBtnBoat():void
-		{
+			}
+			
+			public function initBtnBoat():void
+			{
 			ImageASelect = new FlxSprite(FlxG.width/2 - 80,FlxG.height- 120);
 			ImageASelect.loadGraphic(BoatASelect);
 			ImageBSelect = new FlxSprite(FlxG.width/2-20,FlxG.height- 120);
@@ -163,84 +160,61 @@ package org.cabestan
 			choose = new FlxText(FlxG.width/2-150,FlxG.height - 150,300,"Choisis ton bateau !");
 			choose.setFormat(null, 16, 0xFF000000, "center");
 			add(choose);
-		}
-		
-		public function selectType(type:Number):void
-		{
+			}
+			
+			public function selectType(type:Number):void
+			{
 			
 			if(type == 1 && FlxG.IsBoughtA ==true)
 			{
-<<<<<<< HEAD
-				FlxG.TypeBateau =1;
-				selectA.loadGraphic(ImageASelect,ImageASelect);
-				selectB.loadGraphic(ImageB,ImageB);
-				selectC.loadGraphic(ImageC,ImageC);
-				
-=======
 			FlxG.TypeBateau =1;
 			selectA.loadGraphic(ImageASelect,ImageASelect);
 			selectB.loadGraphic(ImageB,ImageB);
 			selectC.loadGraphic(ImageC,ImageC);
 			advert.kill();
 			
->>>>>>> branch 'master' of https://github.com/Aveys/CabestanGame.git
 			}else if(type == 2 && FlxG.IsBoughtB ==true)
 			{
-<<<<<<< HEAD
-				FlxG.TypeBateau =2;
-				selectA.loadGraphic(ImageA,ImageA);
-				selectB.loadGraphic(ImageBSelect,ImageBSelect);
-				selectC.loadGraphic(ImageC,ImageC);
-=======
+			
 			FlxG.TypeBateau =2;
 			selectA.loadGraphic(ImageA,ImageA);
 			selectB.loadGraphic(ImageBSelect,ImageBSelect);
 			selectC.loadGraphic(ImageC,ImageC);
 			advert.kill();
->>>>>>> branch 'master' of https://github.com/Aveys/CabestanGame.git
 			}else if(type == 3 && FlxG.IsBoughtC ==true)
 			{
-<<<<<<< HEAD
-				FlxG.TypeBateau =3;
-				selectA.loadGraphic(ImageA,ImageA);
-				selectB.loadGraphic(ImageB,ImageB);
-				selectC.loadGraphic(ImageCSelect,ImageCSelect);
-=======
+			
 			FlxG.TypeBateau =3;
 			selectA.loadGraphic(ImageA,ImageA);
 			selectB.loadGraphic(ImageB,ImageB);
 			selectC.loadGraphic(ImageCSelect,ImageCSelect);
 			advert.kill();
->>>>>>> branch 'master' of https://github.com/Aveys/CabestanGame.git
-			}else
-<<<<<<< HEAD
-				add(advert);
 			
-=======
-				advert.revive();
-
->>>>>>> branch 'master' of https://github.com/Aveys/CabestanGame.git
-		}
-		
-		public function startGame():void
-		{
+			}else
+			advert.revive();
+			
+			
+			}
+			
+			public function startGame():void
+			{
 			FlxG.music.stop();
 			FlxG.fade();
 			FlxG.switchState(new PlayState());
-		}
-		
-		public function startBoat(type:Number):void
-		{
+			}
+			
+			public function startBoat(type:Number):void
+			{
 			FlxG.TypeBateau = type;
 			FlxG.switchState(new BoatState());
 			
-		}
-		
-		
-		public function startMenu():void
-		{
+			}
+			
+			
+			public function startMenu():void
+			{
 			FlxG.switchState(new MenuState());
-		}
-	}
-	
-}
+			}
+			}
+			
+			}

@@ -16,7 +16,7 @@ package org.cabestan
 		private var _desciption:FlxText;
 		private var _Prix:FlxText;
 		private var _bg:FlxSprite;
-		
+		private var boutifSFX:FlxSound;
 		private var _descriptionA:String;
 		private var _descriptionB:String;
 		private var _descriptionC:String;
