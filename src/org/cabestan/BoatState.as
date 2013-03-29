@@ -1,12 +1,7 @@
 package org.cabestan
 {
 	import flash.text.FontStyle;
-	
-	import org.flixel.FlxG;
-	import org.flixel.FlxSprite;
-	import org.flixel.FlxState;
-	import org.flixel.FlxText;
-	import org.flixel.FlxU;
+	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.FlxButtonPlus;
 	
 	public class BoatState extends FlxState
@@ -14,6 +9,7 @@ package org.cabestan
 		[Embed(source="../assets/image_Barque1.jpg")] private var BoatA:Class;
 		[Embed(source="../assets/image_bateauB.jpg")] private var BoatB:Class;
 		[Embed(source="../assets/image_bateauC.jpg")] private var BoatC:Class;
+		[Embed(source="../assets/boutikmusic.mp3")] private var Boutik:Class;
 		
 		private var _logo:FlxSprite;
 		private var _desciption:FlxText;
@@ -31,10 +27,26 @@ package org.cabestan
 		
 		private var btnMenu:FlxButtonPlus;
 		private var btnBuy:FlxButtonPlus;
+		
+		private var boutifSFX:FlxSound;
 
 		
 		override public function create():void
 		{
+			boutifSFX = new FlxSound();
+			boutifSFX.loadEmbedded(Boutik);
+			boutifSFX.ID=9;
+			if(FlxG.music != null){
+				if(FlxG.music.ID != 9){
+					FlxG.music=boutifSFX;
+					FlxG.music.play(true);
+				}
+				
+			}
+			else{
+				FlxG.music=boutifSFX;
+				FlxG.music.play(true);
+			}
 			initText();
 			FlxG.mouse.show();
 			_logo = new FlxSprite(0,0);

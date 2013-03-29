@@ -44,13 +44,23 @@ package org.cabestan
 		
 		override public function create():void
 		{
-				boutifSFX = new FlxSound;
-				boutifSFX.loadEmbedded(Boutik)
-				boutifSFX.play();
-				bg = new FlxSprite();
-				bg.loadGraphic(Bg);
-				add(bg);
+			boutifSFX = new FlxSound;
+			boutifSFX.loadEmbedded(Boutik);
+			boutifSFX.ID=9;
+			if(FlxG.music != null){
+				if(FlxG.music.ID != 9){
+					FlxG.music=boutifSFX;
+					FlxG.music.play(true);
+				}
 				
+			}
+			else{
+				FlxG.music=boutifSFX;
+				FlxG.music.play(true);
+			}
+			bg = new FlxSprite();
+			bg.loadGraphic(Bg);
+			add(bg);
 			FlxG.mouse.show();
 			FlxG.bgColor = 0xFFFFFFFF;
 			_logo = new FlxSprite(90,10);
@@ -66,7 +76,7 @@ package org.cabestan
 			
 			advert = new FlxText(FlxG.width - 150,FlxG.height - 150,100,"Vous devez achetez ce bateau pour l'utiliser !");
 			advert.setFormat(null, 16, 0xFF000000, "center");
-
+			
 			
 			super.create();
 		}
@@ -78,7 +88,14 @@ package org.cabestan
 				btnPlay.active = false;
 			else
 				btnPlay.active = true;
-
+			if(FlxG.keys.NUMPADPLUS)
+				FlxG.score+=1000;
+			if(FlxG.keys.D){
+				FlxG.IsBoughtA=true;
+				FlxG.IsBoughtB=true;
+				FlxG.IsBoughtC=true;
+			}
+			
 			
 			super.update();
 		}
@@ -148,31 +165,32 @@ package org.cabestan
 			
 			if(type == 1 && FlxG.IsBoughtA ==true)
 			{
-			FlxG.TypeBateau =1;
-			selectA.loadGraphic(ImageASelect,ImageASelect);
-			selectB.loadGraphic(ImageB,ImageB);
-			selectC.loadGraphic(ImageC,ImageC);
-			
+				FlxG.TypeBateau =1;
+				selectA.loadGraphic(ImageASelect,ImageASelect);
+				selectB.loadGraphic(ImageB,ImageB);
+				selectC.loadGraphic(ImageC,ImageC);
+				
 			}else if(type == 2 && FlxG.IsBoughtB ==true)
 			{
-			FlxG.TypeBateau =2;
-			selectA.loadGraphic(ImageA,ImageA);
-			selectB.loadGraphic(ImageBSelect,ImageBSelect);
-			selectC.loadGraphic(ImageC,ImageC);
+				FlxG.TypeBateau =2;
+				selectA.loadGraphic(ImageA,ImageA);
+				selectB.loadGraphic(ImageBSelect,ImageBSelect);
+				selectC.loadGraphic(ImageC,ImageC);
 			}else if(type == 3 && FlxG.IsBoughtC ==true)
 			{
-			FlxG.TypeBateau =3;
-			selectA.loadGraphic(ImageA,ImageA);
-			selectB.loadGraphic(ImageB,ImageB);
-			selectC.loadGraphic(ImageCSelect,ImageCSelect);
+				FlxG.TypeBateau =3;
+				selectA.loadGraphic(ImageA,ImageA);
+				selectB.loadGraphic(ImageB,ImageB);
+				selectC.loadGraphic(ImageCSelect,ImageCSelect);
 			}else
 				add(advert);
-
+			
 		}
 		
 		public function startGame():void
 		{
-			
+			FlxG.music.stop();
+			FlxG.fade();
 			FlxG.switchState(new PlayState());
 		}
 		
@@ -183,11 +201,11 @@ package org.cabestan
 			
 		}
 		
-
+		
 		public function startMenu():void
 		{
 			FlxG.switchState(new MenuState());
 		}
 	}
-
+	
 }

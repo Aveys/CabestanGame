@@ -20,6 +20,8 @@ package org.cabestan
 		public var playSFX:FlxSound;
 		[Embed(source="../assets/logo.png")] private var Logo:Class;
 		public var selectFX:FlxSound;
+		public var bg:FlxSprite;
+		[Embed(source="../assets/bg.png")] private var Bg:Class;
 		
 		//attributs de sprite
 		private var _logo:FlxSprite;
@@ -178,10 +180,12 @@ package org.cabestan
 			obstacles.kill()
 			explodeFX.play(true);	
 			IsDead = true;
+			bg = new FlxSprite();
+			bg.loadGraphic(Bg);
+			add(bg);
 			_gameOverText = new FlxText(0,400, FlxG.width, "Vous avez perdu\n Appuyer sur ENTRER pour accéder à la boutique de Cabestan !");					
 			_gameOverText.setFormat(null, 16, 0xFF000000, "center");
 			add(_gameOverText);
-			FlxG.bgColor = 0xFFFFFFFF;
 			_logo = new FlxSprite(90,10);
 			_logo.loadGraphic(Logo);
 			add(_logo);	
