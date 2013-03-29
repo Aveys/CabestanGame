@@ -66,7 +66,8 @@ package org.cabestan
 			
 			advert = new FlxText(FlxG.width - 150,FlxG.height - 150,100,"Vous devez achetez ce bateau pour l'utiliser !");
 			advert.setFormat(null, 16, 0xFF000000, "center");
-
+			add(advert);
+			advert.kill();
 			
 			super.create();
 		}
@@ -152,6 +153,7 @@ package org.cabestan
 			selectA.loadGraphic(ImageASelect,ImageASelect);
 			selectB.loadGraphic(ImageB,ImageB);
 			selectC.loadGraphic(ImageC,ImageC);
+			advert.kill();
 			
 			}else if(type == 2 && FlxG.IsBoughtB ==true)
 			{
@@ -159,14 +161,16 @@ package org.cabestan
 			selectA.loadGraphic(ImageA,ImageA);
 			selectB.loadGraphic(ImageBSelect,ImageBSelect);
 			selectC.loadGraphic(ImageC,ImageC);
+			advert.kill();
 			}else if(type == 3 && FlxG.IsBoughtC ==true)
 			{
 			FlxG.TypeBateau =3;
 			selectA.loadGraphic(ImageA,ImageA);
 			selectB.loadGraphic(ImageB,ImageB);
 			selectC.loadGraphic(ImageCSelect,ImageCSelect);
+			advert.kill();
 			}else
-				add(advert);
+				advert.revive();
 
 		}
 		

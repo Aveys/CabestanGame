@@ -14,10 +14,12 @@ package org.cabestan
 		[Embed(source="../assets/image_Barque1.jpg")] private var BoatA:Class;
 		[Embed(source="../assets/image_bateauB.jpg")] private var BoatB:Class;
 		[Embed(source="../assets/image_bateauC.jpg")] private var BoatC:Class;
+		[Embed(source="../assets/bg.png")] private var Bg:Class;
 		
 		private var _logo:FlxSprite;
 		private var _desciption:FlxText;
 		private var _Prix:FlxText;
+		private var _bg:FlxSprite;
 		
 		private var _descriptionA:String;
 		private var _descriptionB:String;
@@ -35,6 +37,9 @@ package org.cabestan
 		
 		override public function create():void
 		{
+			_bg = new FlxSprite(0,0);
+			_bg.loadGraphic(Bg);
+			add(_bg);
 			initText();
 			FlxG.mouse.show();
 			_logo = new FlxSprite(0,0);
@@ -64,12 +69,14 @@ package org.cabestan
 			}
 			
 			_desciption = new FlxText(0,240,340,_description1);
-			_desciption.color = 0xff000000;
+			_desciption.color = 0xffFFFFFF;
+			_desciption.size = 10;
 			
 			_Prix = new FlxText(FlxG.width/2,280,340,"Prix : "+ FlxU.formatMoney(_prix1) +" €");
-			_Prix.color = 0xff000000;
+			_Prix.color = 0xffFFFFFF;
 			_Prix.alignment = "center";
 			_Prix.size = 20;
+			
 			
 			
 			btnMenu = new FlxButtonPlus(FlxG.width/2+95,320,startMenu,null, "Boutique",150,40);
@@ -127,7 +134,6 @@ package org.cabestan
 						" Sa fonction est en fait peu determinée. Il est en effet, souvent utilisé comme bateau de peche,\n" +
 						"mais également comme bateau promenade, voire, dans certains cas, comme moyen de locomotion dans les\n " +
 						"bocages, en raison de son très faible tirant d'eau.\n" +
-						"\n" +
 						"Caractéristiques :\n" +
 						"• longueur : 4 m,\n" +
 						"• poids : 250 KG,\n" +
@@ -139,7 +145,7 @@ package org.cabestan
 	_descriptionB = "Plus spécialisé, le bateau classe \"B\" est destiné à la promenade en mer, lac, estuaire de rivière ou canal.\n "+
 					"Il est par aileurs facilement portable. Conçu pour des déplacements plus long, il est équipé d'une cabine pour\n" +
 					" deyx personnes, et peut recevoir un aménagement cuisine sommaire\n\n" +
-					"La partie arrière est équipé de deux banquettes bois et d'une plate-forme\n\n"
+					"La partie arrière est équipé de deux banquettes bois et d'une plate-forme\n\n" +
 					
 			"Caractéristiques :\n" +
 			"• longueur : 5.5, m\n" +
@@ -148,11 +154,11 @@ package org.cabestan
 			"  sommage de cuisine, arrière aménagée en solarium," +
 			"• adjonction d'un moteur hors-bord ou d'un mat.";
 	
-	_descriptionA = "Dernier-né de la gamme, le bateau classe \"C\" est destiné presque exclusiment aux promenade en mer ou\n" +
+	_descriptionC = "Dernier-né de la gamme, le bateau classe \"C\" est destiné presque exclusiment aux promenade en mer ou\n" +
 					"en lac. Il permet également la peche au gros/ Difficilement transportable, sauf par des spécialistes,\n" +
-					"ce bateau sera également de manière paermanente à un port\n\n" +
+					"ce bateau sera également de manière paermanente à un port\n" +
 					"Plus grand et plus luxueux, compte tenu de la clienèle à laquelle il est destiné, ce bateau de plaisance\n" +
-					"comprend :\n"
+					"comprend :\n" +
 					"\n" +
 				"Caractéristiques :\n" +
 				"• longueur : 8 m,\n" +
